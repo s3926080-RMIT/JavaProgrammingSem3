@@ -40,7 +40,11 @@ public class Product {
         this.pDescriptions = pDescriptions;
     }
 
-    public void printInfo() {
+    void printDetailedInfo() {
         System.out.printf("%-10s %-25s %-20s %-15s %-35s\n", pID, pName, pPrice + " VNĐ", pCategory, pDescriptions);
+    }
+
+    void printBasicInfo(){
+        System.out.printf("%-10s %-25s %-20s\n", pID, pName, pPrice + " VNĐ");
     }
 }

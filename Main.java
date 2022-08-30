@@ -7,26 +7,26 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    //    Create ArrayList of products
+//  Create ArrayList of products
     static ArrayList<Product> products_list = new ArrayList<>();
 
     static void listAllProducts() {
-        System.out.printf("%-10s %-25s %-20s %-15s %-35s\n", "ID", "Name", "Price", "Category", "Descriptions");
+        System.out.printf("%-10s %-25s %-20s\n", "ID", "Name", "Price");
         for (Product p : products_list) {
-            p.printInfo();
+            p.printBasicInfo();
         }
     }
 
     static void addProduct() {
-//        Ask admin to input new product info
+//      Ask admin to input new product info
         Scanner scanner = new Scanner(System.in);
 
-//        Input name
+//      Input name
         System.out.print("Input new product name: ");
         String pName;
         while (true) {
             pName = scanner.nextLine();
-//            Restrict input to avoid repeated product names
+//          Restrict input to avoid repeated product names
             boolean name_exists = false;
             for (Product p : products_list) {
                 if (Objects.equals(pName, p.getpName())) {
@@ -34,17 +34,17 @@ public class Main {
                     break;
                 }
             }
-//            Also restrict input to not contain ',' as the character is used to divide product info
+//          Also restrict input to not contain ',' as the character is used to divide product info
             if (pName.indexOf(',') == -1 && !name_exists) {
                 break;
             }
             System.out.print("That is not a valid name. Please try again: ");
         }
 
-//        Input price
+//      Input price
         System.out.print("Input new product price: ");
         String pPrice_string;
-//        Restrict input to only int
+//      Restrict input to only int
         while (true) {
             pPrice_string = scanner.nextLine();
             if (pPrice_string.matches("^[0-9]+$")) {
@@ -54,10 +54,10 @@ public class Main {
         }
         int pPrice = Integer.parseInt(pPrice_string);
 
-//        Input category
+//      Input category
         System.out.print("Input new product's category: ");
         String pCategory;
-//        Restrict input to not contain ','
+//      Restrict input to not contain ','
         while (true) {
             pCategory = scanner.nextLine();
             if (pCategory.indexOf(',') == -1) {
@@ -66,10 +66,10 @@ public class Main {
             System.out.print("That is not a valid category. Please try again: ");
         }
 
-//        Input description
+//      Input description
         System.out.print("Input new product's descriptions: ");
         String pDescriptions;
-//        Restrict input to not contain ','
+//      Restrict input to not contain ','
         while (true) {
             pDescriptions = scanner.nextLine();
             if (pDescriptions.indexOf(',') == -1) {
@@ -78,7 +78,7 @@ public class Main {
             System.out.print("That is not valid descriptions. Please try again: ");
         }
 
-//        Generate unique product ID
+//      Generate unique product ID
         int temp_ID = products_list.size() + 1;
         String temp_ID_string;
         if (temp_ID < 10) {
@@ -89,11 +89,11 @@ public class Main {
             temp_ID_string = "P-" + temp_ID;
         }
 
-//        Add product to ArrayList
+//      Add product to ArrayList
         Product p = new Product(temp_ID_string, pName, pPrice, pCategory, pDescriptions);
         products_list.add(p);
 
-//        Append new product info to file
+//      Append new product info to file
         try {
             FileWriter p_writer = new FileWriter("items.txt", true);
             p_writer.append(p.getpID()).append(",").append(p.getpName()).append(",").append(String.valueOf(p.getpPrice()
@@ -105,15 +105,16 @@ public class Main {
     }
 
     static void changePrice() {
-//        Ask admin to input ID of product to be repriced
+//      Ask admin to input ID of product to be repriced
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input product ID: ");
         String change_pID = scanner.nextLine();
         boolean product_found = false;
+
         for (Product p : products_list) {
             if (Objects.equals(p.getpID(), change_pID)) {
                 System.out.print("Input new price: ");
-//                Restrict input to only int
+//              Restrict input to only int
                 String pPrice_string;
                 while (true) {
                     pPrice_string = scanner.nextLine();
@@ -124,7 +125,7 @@ public class Main {
                 }
                 p.setpPrice(Integer.parseInt(pPrice_string));
 
-//                Rewrite product info to file
+//              Rewrite product info to file
                 try {
                     FileWriter p_writer = new FileWriter("items.txt");
                     for (Product p2 : products_list) {
@@ -147,7 +148,7 @@ public class Main {
     }
 
     static void rmvProduct() {
-//        Ask admin to input ID of product to be removed
+//      Ask admin to input ID of product to be removed
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input product ID: ");
         String rmv_pID = scanner.nextLine();
@@ -155,10 +156,10 @@ public class Main {
 
         for (Product p : products_list) {
             if (Objects.equals(p.getpID(), rmv_pID)) {
-//                Remove selected product
+//              Remove selected product
                 products_list.remove(p);
 
-//                Rewrite products file
+//              Rewrite products file
                 try {
                     FileWriter p_writer = new FileWriter("items.txt");
                     for (Product p2 : products_list) {
@@ -180,8 +181,29 @@ public class Main {
         }
     }
 
+    static void viewDetailedProduct() {
+//      Ask user to input desired product's ID
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input product ID: ");
+        String detail_pID = scanner.nextLine();
+        boolean product_found = false;
+
+        for (Product p : products_list) {
+            if (Objects.equals(p.getpID(), detail_pID)) {
+//              Print product's detailed info
+                System.out.printf("%-10s %-25s %-20s %-15s %-35s\n", "ID", "Name", "Price", "Category", "Descriptions");
+                p.printDetailedInfo();
+                product_found = true;
+                break;
+            }
+        }
+        if (!product_found) {
+            System.out.println("No products with such ID found.");
+        }
+    }
+
     public static void main(String[] args) {
-//        Import products info from txt file to program
+//      Import products info from txt file to program
         try {
             File p_file = new File("items.txt");
             Scanner p_reader = new Scanner(p_file);
@@ -202,5 +224,6 @@ public class Main {
 //        addProduct();
 //        rmvProduct();
 //        changePrice();
+//        viewDetailedProduct();
     }
 }
