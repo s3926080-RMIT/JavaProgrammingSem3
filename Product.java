@@ -1,0 +1,46 @@
+public class Product {
+    private String pID;
+    private String pName;
+    private int pPrice;
+    private String pCategory;
+    private String pDescriptions;
+
+    public String getpID() {
+        return pID;
+    }
+
+    public String getpName() {
+        return pName;
+    }
+
+    public int getpPrice() {
+        return pPrice;
+    }
+
+    public String getpCategory() {
+        return pCategory;
+    }
+
+    public String getpDescriptions() {
+        return pDescriptions;
+    }
+
+    public void setpPrice(int pPrice) {
+        this.pPrice = pPrice;
+    }
+
+    public Product() {
+    }
+
+    public Product(String pID, String pName, int pPrice, String pCategory, String pDescriptions) {
+        this.pID = pID;
+        this.pName = pName;
+        this.pPrice = pPrice;
+        this.pCategory = pCategory;
+        this.pDescriptions = pDescriptions;
+    }
+
+    public void printInfo() {
+        System.out.printf("%-10s %-25s %-20s %-15s %-35s\n", pID, pName, pPrice + " VNĐ", pCategory, pDescriptions);
+    }
+}
