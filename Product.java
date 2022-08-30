@@ -41,6 +41,7 @@ public class Product {
     }
 
     void printDetailedInfo() {
+        System.out.printf("%-10s %-25s %-20s %-15s %-35s\n", "ID", "Name", "Price", "Category", "Descriptions");
         System.out.printf("%-10s %-25s %-20s %-15s %-35s\n", pID, pName, pPrice + " VNĐ", pCategory, pDescriptions);
     }
 
