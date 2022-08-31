@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-//  Create ArrayList of products
+    //  Create ArrayList of products
     static ArrayList<Product> products_list = new ArrayList<>();
 
     static void listAllProducts() {
@@ -191,7 +191,6 @@ public class Main {
         for (Product p : products_list) {
             if (Objects.equals(p.getpID(), detail_pID)) {
 //              Print product's detailed info
-                System.out.printf("%-10s %-25s %-20s %-15s %-35s\n", "ID", "Name", "Price", "Category", "Descriptions");
                 p.printDetailedInfo();
                 product_found = true;
                 break;
@@ -200,6 +199,30 @@ public class Main {
         if (!product_found) {
             System.out.println("No products with such ID found.");
         }
+    }
+
+    static void searchByCategory() {
+//      Ask user to input desired category
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input category: ");
+        String search_category = scanner.nextLine();
+        boolean category_found = false;
+
+//      Print all products of input category
+        System.out.printf("%-10s %-25s %-20s\n", "ID", "Name", "Price");
+        for (Product p : products_list) {
+            if (Objects.equals(p.getpCategory(), search_category)) {
+                p.printBasicInfo();
+                category_found = true;
+            }
+        }
+
+        if (!category_found) {
+            System.out.println("No category found.");
+        }
+    }
+
+    static void sortByPrice() {
     }
 
     public static void main(String[] args) {
@@ -225,5 +248,6 @@ public class Main {
 //        rmvProduct();
 //        changePrice();
 //        viewDetailedProduct();
+//        searchByCategory();
     }
 }
