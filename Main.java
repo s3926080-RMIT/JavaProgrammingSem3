@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -223,6 +224,13 @@ public class Main {
     }
 
     static void sortByPrice() {
+        ArrayList<Product> sortedList;
+        sortedList = products_list;
+        sortedList.sort(Comparator.comparingInt(Product::getpPrice));
+        System.out.printf("%-10s %-25s %-20s\n", "ID", "Name", "Price");
+        for (Product p : sortedList) {
+            p.printBasicInfo();
+        }
     }
 
     public static void main(String[] args) {
@@ -249,5 +257,6 @@ public class Main {
 //        changePrice();
 //        viewDetailedProduct();
 //        searchByCategory();
+//        sortByPrice();
     }
 }
