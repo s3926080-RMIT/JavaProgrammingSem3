@@ -1,15 +1,15 @@
-P-001,Acer Nitro,25000000,Laptop,Good laptop but high temperatures
-P-002,Lenovo Legion,27000000,Laptop,Best all-around laptop
-P-003,HyperX Cloud Alpha,2400000,Headset,Good headset with good microphone
-P-004,HyperX CLoud Stinger,1600000,Headset,Good headset for the price
-P-005,Logitech G502,1400000,Mouse,Good mouse with many buttons but heavy
-P-006,Glorious Model D,1500000,Mouse,Good mouse with very light weight
-P-007,Anne Pro 2,1600000,Keyboard,Good keyboard for the price
-P-008,Logitech G Pro,2600000,Keyboard,Decent keyboard with fancy LEDs
-P-009,JBL Pulse 3,4000000,Speaker,Good speaker with very fancy LEDs
-P-010,Sony Playstation 5,17000000,Console,Good console for the price
-P-011,Macbook Air,31000000,Laptop,Good laptop for office work
-P-012,Macbook Pro 13,30000000,Laptop,Good laptop for office work
-P-013,iPhone 13,20000000,Phone,Good phone but very high price
-P-014,HyperX QuadCast,2900000,Microphone,Good microphone but high price
-P-015,HyperX SoloCast,1500000,Microphone,Good microphone for the price
+P-001|Acer Nitro|25000000|Laptop|Good laptop but high temperatures
+P-002|Lenovo Legion|27000000|Laptop|Best all-around laptop
+P-003|HyperX Cloud Alpha|2400000|Headset|Good headset with good microphone
+P-004|HyperX CLoud Stinger|1600000|Headset|Good headset for the price
+P-005|Logitech G502|1400000|Mouse|Good mouse with many buttons but heavy
+P-006|Glorious Model D|1500000|Mouse|Good mouse with very light weight
+P-007|Anne Pro 2|1600000|Keyboard|Good keyboard for the price
+P-008|Logitech G Pro|2600000|Keyboard|Decent keyboard with fancy LEDs
+P-009|JBL Pulse 3|4000000|Speaker|Good speaker with very fancy LEDs
+P-010|Sony Playstation 5|17000000|Console|Good console for the price
+P-011|Macbook Air|31000000|Laptop|Good laptop for office work
+P-012|Macbook Pro 13|30000000|Laptop|Good laptop for office work
+P-013|iPhone 13|20000000|Phone|Good phone but very high price
+P-014|HyperX QuadCast|2900000|Microphone|Good microphone but high price
+P-015|HyperX SoloCast|1500000|Microphone|Good microphone for the price

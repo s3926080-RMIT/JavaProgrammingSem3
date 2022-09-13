@@ -35,8 +35,8 @@ public class Main {
                     break;
                 }
             }
-//          Also restrict input to not contain ',' as the character is used to divide product info
-            if (pName.indexOf(',') == -1 && !name_exists) {
+//          Also restrict input to not contain '|' as the character is used to divide product info
+            if (pName.indexOf('|') == -1 && !name_exists) {
                 break;
             }
             System.out.print("That is not a valid name. Please try again: ");
@@ -58,10 +58,10 @@ public class Main {
 //      Input category
         System.out.print("Input new product's category: ");
         String pCategory;
-//      Restrict input to not contain ','
+//      Restrict input to not contain '|'
         while (true) {
             pCategory = scanner.nextLine();
-            if (pCategory.indexOf(',') == -1) {
+            if (pCategory.indexOf('|') == -1) {
                 break;
             }
             System.out.print("That is not a valid category. Please try again: ");
@@ -70,10 +70,10 @@ public class Main {
 //      Input description
         System.out.print("Input new product's descriptions: ");
         String pDescriptions;
-//      Restrict input to not contain ','
+//      Restrict input to not contain '|'
         while (true) {
             pDescriptions = scanner.nextLine();
-            if (pDescriptions.indexOf(',') == -1) {
+            if (pDescriptions.indexOf('|') == -1) {
                 break;
             }
             System.out.print("That is not valid descriptions. Please try again: ");
@@ -97,8 +97,8 @@ public class Main {
 //      Append new product info to file
         try {
             FileWriter p_writer = new FileWriter("items.txt", true);
-            p_writer.append(p.getpID()).append(",").append(p.getpName()).append(",").append(String.valueOf(p.getpPrice()
-            )).append(",").append(p.getpCategory()).append(",").append(p.getpDescriptions()).append("\n");
+            p_writer.append(p.getpID()).append("|").append(p.getpName()).append("|").append(String.valueOf(p.getpPrice()
+            )).append("|").append(p.getpCategory()).append("|").append(p.getpDescriptions()).append("\n");
             p_writer.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -130,8 +130,8 @@ public class Main {
                 try {
                     FileWriter p_writer = new FileWriter("items.txt");
                     for (Product p2 : products_list) {
-                        p_writer.append(p2.getpID()).append(",").append(p2.getpName()).append(",").append(String.valueOf
-                                (p2.getpPrice())).append(",").append(p2.getpCategory()).append(",").append(p.
+                        p_writer.append(p2.getpID()).append("|").append(p2.getpName()).append("|").append(String.valueOf
+                                (p2.getpPrice())).append("|").append(p2.getpCategory()).append("|").append(p.
                                 getpDescriptions()).append("\n");
                     }
                     p_writer.close();
@@ -164,8 +164,8 @@ public class Main {
                 try {
                     FileWriter p_writer = new FileWriter("items.txt");
                     for (Product p2 : products_list) {
-                        p_writer.append(p2.getpID()).append(",").append(p2.getpName()).append(",").append(String.valueOf
-                                (p2.getpPrice())).append(",").append(p2.getpCategory()).append(",").append(p.
+                        p_writer.append(p2.getpID()).append("|").append(p2.getpName()).append("|").append(String.valueOf
+                                (p2.getpPrice())).append("|").append(p2.getpCategory()).append("|").append(p.
                                 getpDescriptions()).append("\n");
                     }
                     p_writer.close();
@@ -241,7 +241,7 @@ public class Main {
             while (p_reader.hasNextLine()) {
                 String data = p_reader.nextLine();
                 if (!data.isEmpty()) {
-                    String[] p_data = data.split(",");
+                    String[] p_data = data.split("\\|");
                     products_list.add(new Product(p_data[0], p_data[1], Integer.parseInt(p_data[2]), p_data[3], p_data[4]));
                 }
             }
