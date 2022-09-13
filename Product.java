@@ -29,9 +29,6 @@ public class Product {
         this.pPrice = pPrice;
     }
 
-    public Product() {
-    }
-
     public Product(String pID, String pName, int pPrice, String pCategory, String pDescriptions) {
         this.pID = pID;
         this.pName = pName;
