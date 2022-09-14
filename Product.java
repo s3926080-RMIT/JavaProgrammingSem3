@@ -1,9 +1,9 @@
 public class Product {
-    private String pID;
-    private String pName;
+    private final String pID;
+    private final String pName;
     private int pPrice;
-    private String pCategory;
-    private String pDescriptions;
+    private final String pCategory;
+    private final String pDescriptions;
 
     public String getpID() {
         return pID;
