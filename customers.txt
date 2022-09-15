@@ -1,0 +1,8 @@
+U-001|Hoang|vietnam|012313813|Hoang1|12345|Customer
+U-002|TheAnh|SSG|01231238123|Theanh69|1234|Customer
+U-003|Tuan|Hnoi|019831931|Tuan|12345|Customer
+U-004|Duc|VN|0123131312|Kduc|12345|Customer|Bronze
+U-005|Hoang|VN|013131312|HoangTrann|1234|Customer|Bronze|0
+U-006|HoangTranViet|VN|092312931|HoangTran|1234|Customer|Bronze|0
+U-007|TuanNguyen|VN|01239812931|Tuan123|1234|Customer|Bronze|0
+U-008|KhanhDuc|HN|0921313|KDUC|1234|Customer|Bronze|0
