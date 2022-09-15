@@ -1,4 +1,3 @@
-package Shop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +10,7 @@ import java.util.Scanner;
 public class Main2 {
     // Create ArrayList of Customers
     static ArrayList<User> users_list = new ArrayList<>();
+    
 
     static void registerCustomer() {
         Scanner scanner = new Scanner(System.in);
@@ -96,6 +96,29 @@ public class Main2 {
             throw new RuntimeException(e);
         }
     }
+
+    static void logIn(){
+        System.out.println("====Login====\n");
+        System.out.print("Enter username: ");
+
+        Scanner input = new Scanner(System.in);
+        String uName = input.nextLine();
+        
+        for (User u : users_list){
+            if (uName.equals(u.getcUsername())){
+                System.out.print("Enter password: ");
+                Scanner inputPassword = new Scanner(System.in);
+                String uPass = inputPassword.nextLine();
+                if (uPass.equals(u.getcPassword())){
+                    System.out.println("You signed in.");
+                } else {
+                    System.out.println("Incorrect password or incorrect username\n\n");
+                    logIn();
+                }
+            }
+        }
+    }
+
     public static void main (String[] args) {
         try {
             File c_file = new File("customers.txt");
@@ -113,9 +136,9 @@ public class Main2 {
             throw new RuntimeException(e);
         }
 
-        registerCustomer();
+        logIn();
 
+        
 
     }
 }
-
