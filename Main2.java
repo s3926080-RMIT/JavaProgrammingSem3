@@ -104,7 +104,7 @@ public class Main2 {
                 String data = c_reader.nextLine();
                 if (!data.isEmpty()) {
                     String[] c_data = data.split("\\|");
-                    users_list.add(new User(c_data[0], c_data[1], c_data[2], c_data[3], c_data[4], c_data[5], c_data[6]));
+                    users_list.add(new User(c_data[0], c_data[1], c_data[2], c_data[3], c_data[4], c_data[5]));
                 }
             }
             c_reader.close();
