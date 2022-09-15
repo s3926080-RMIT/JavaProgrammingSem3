@@ -75,4 +75,8 @@ public class Order {
         customerPrintOrder();
         System.out.println("---------------------------------------------------------------------------");
     }
+
+    void printBasicInfoOrder(){
+        System.out.printf("%-10s %-25s\n", oID, oPrice + " VNĐ");
+    }
 }

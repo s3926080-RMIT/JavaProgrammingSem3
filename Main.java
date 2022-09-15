@@ -11,6 +11,8 @@ public class Main {
     //  Create ArrayList of products
     static ArrayList<Product> products_list = new ArrayList<>();
     static ArrayList<Order> orders_list = new ArrayList<>();
+    //  Refresh the ArrayList of executed orders when the program starts
+    static ArrayList<Order> orders_exec_list = new ArrayList<>();
 
     static void listAllProducts() {
         System.out.printf("%-10s %-25s %-20s\n", "ID", "Name", "Price");
@@ -81,18 +83,18 @@ public class Main {
         }
 
 //      Generate unique product ID
-        int temp_ID = products_list.size() + 1;
-        String temp_ID_string;
-        if (temp_ID < 10) {
-            temp_ID_string = "P-00" + temp_ID;
-        } else if (temp_ID < 100) {
-            temp_ID_string = "P-0" + temp_ID;
+        int temp_pID = products_list.size() + 1;
+        String temp_pID_string;
+        if (temp_pID < 10) {
+            temp_pID_string = "P-00" + temp_pID;
+        } else if (temp_pID < 100) {
+            temp_pID_string = "P-0" + temp_pID;
         } else {
-            temp_ID_string = "P-" + temp_ID;
+            temp_pID_string = "P-" + temp_pID;
         }
 
 //      Add product to ArrayList
-        Product p = new Product(temp_ID_string, pName, pPrice, pCategory, pDescriptions);
+        Product p = new Product(temp_pID_string, pName, pPrice, pCategory, pDescriptions);
         products_list.add(p);
 
 //      Append new product info to file
@@ -220,7 +222,7 @@ public class Main {
         }
 
         if (!category_found) {
-            System.out.println("No category found.");
+            System.out.println("No such category found.");
         }
     }
 
@@ -239,9 +241,20 @@ public class Main {
         }
     }
 
-    static void createOrder(String oID, String cID) {
+    static void createOrder(String cID) {
+//      Generate unique order ID
+        int temp_oID = orders_list.size() + 1;
+        String temp_oID_string;
+        if (temp_oID < 10) {
+            temp_oID_string = "O-00" + temp_oID;
+        } else if (temp_oID < 100) {
+            temp_oID_string = "O-0" + temp_oID;
+        } else {
+            temp_oID_string = "O-" + temp_oID;
+        }
+
 //      Create a new order
-        Order o = new Order(oID, cID);
+        Order o = new Order(temp_oID_string, cID);
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -266,6 +279,10 @@ public class Main {
                 System.out.println("No products with such ID found.");
             }
         }
+
+//      Add order to ArrayList
+        orders_list.add(o);
+
 //      Append new order info to file
         try {
             FileWriter o_writer = new FileWriter("orders.txt", true);
@@ -281,7 +298,134 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        o.customerPrintOrder();
+    }
+
+    static void changeOrderStatus() {
+//      Ask admin to input ID of order to be executed
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input order ID: ");
+        String change_oID = scanner.nextLine();
+        boolean order_found = false;
+
+        for (Order o : orders_list) {
+            if (Objects.equals(o.getoID(), change_oID)) {
+//              Check if the selected order has been paid
+                if (Objects.equals(o.getoStatus(), "UNPAID")) {
+                    o.customerPrintOrder();
+//                  Restrict input to only "Y" or "N" (case-insensitive)
+                    String confirmation;
+                    while (true) {
+//                      Confirmation message
+                        System.out.println("Change status to 'PAID'? (Y/N)");
+                        confirmation = scanner.nextLine();
+                        if (Objects.equals(confirmation, "Y") || Objects.equals(confirmation, "y")) {
+                            o.setoStatus("PAID");
+//                          Add the executed order to the ArrayList of orders executed in the day
+                            orders_exec_list.add(o);
+
+//                          Rewrite order info to file
+                            try {
+                                FileWriter o_writer = new FileWriter("orders.txt");
+                                for (Order o2 : orders_list) {
+//                                  Create a temporary ArrayList to append only product ID in place of products
+                                    ArrayList<String> temp_pID_list = new ArrayList<>();
+                                    for (Product p : o2.getoProducts()) {
+                                        temp_pID_list.add(p.getpID());
+                                    }
+                                    o_writer.append(o2.getoID()).append("|").append(o2.getcID()).append("|").append(String.
+                                                    valueOf(temp_pID_list)).append("|").append(o2.getoProduct_quantity().toString())
+                                            .append("|").append(String.valueOf(o2.getoPrice())).append("|").append(o2.
+                                                    getoStatus()).append("\n");
+                                }
+                                o_writer.close();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            System.out.println("Order status changed to 'PAID'");
+                            break;
+                        } else if (Objects.equals(confirmation, "N") || Objects.equals(confirmation, "n")) {
+//                          Cancel the action if the admin wants to
+                            System.out.println("Action cancelled.");
+                            break;
+                        }
+                        System.out.println("Invalid input.");
+                    }
+                } else {
+                    System.out.println("This order has already been paid.");
+                }
+                order_found = true;
+                break;
+            }
+        }
+        if (!order_found) {
+            System.out.println("No orders with such ID found.");
+        }
+    }
+
+    static void calcRevenue() {
+        int revenue = 0;
+//      Returns the sum of prices of all orders executed
+        for (Order o : orders_list) {
+            if (Objects.equals(o.getoStatus(), "PAID")) {
+                revenue = revenue + o.getoPrice();
+            }
+        }
+        System.out.println("Total revenue: " + revenue + " VNĐ");
+    }
+
+    static void listExecOrders() {
+//      Print info of orders executed in the day
+        for (Order o : orders_exec_list) {
+            o.adminPrintOrder();
+        }
+    }
+
+    static void viewMyOrder(String cID) {
+//      Print a simplified list of orders made by the customer
+        System.out.println("Your orders:");
+        System.out.printf("%-10s %-25s\n", "Order ID", "Price");
+        for (Order o : orders_list) {
+            if (Objects.equals(o.getcID(), cID)) {
+                o.printBasicInfoOrder();
+            }
+        }
+
+//      Ask the customer to input desired order's ID
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input order ID: ");
+        String view_oID = scanner.nextLine();
+        boolean order_found = false;
+
+        for (Order o : orders_list) {
+            if (Objects.equals(o.getoID(), view_oID)) {
+//              Print the order's info
+                o.customerPrintOrder();
+                order_found = true;
+                break;
+            }
+        }
+        if (!order_found) {
+            System.out.println("No orders with such ID found.");
+        }
+    }
+
+    static void listAllOrdersByCID() {
+//      Ask the admin to input customer ID
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input customer ID: ");
+        String listOrder_cID = scanner.nextLine();
+        boolean order_found = false;
+
+        for (Order o : orders_list) {
+            if (Objects.equals(o.getcID(), listOrder_cID)) {
+//              Print orders' info
+                o.adminPrintOrder();
+                order_found = true;
+            }
+        }
+        if (!order_found) {
+            System.out.println("No orders with such Customer ID found.");
+        }
     }
 
     public static void main(String[] args) {
@@ -359,7 +503,12 @@ public class Main {
 //        searchByCategory();
 //        sortByPrice();
 //        listAllOrders();
+//        changeOrderStatus();
+//        calcRevenue();
+//        listExecOrders();
+//        listAllOrdersByCID();
 
-//        createOrder("O-920", "C-920");
+//        createOrder("C-920");
+//        viewMyOrder("C-920");
     }
 }
