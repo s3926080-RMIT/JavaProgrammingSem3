@@ -19,6 +19,7 @@ public class Main {
         for (Product p : products_list) {
             p.printBasicInfo();
         }
+        System.out.println();
     }
 
     static void addProduct() {
@@ -106,6 +107,9 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println("Product added successfully.");
+        System.out.println();
     }
 
     static void changePrice() {
@@ -142,12 +146,14 @@ public class Main {
                     throw new RuntimeException(e);
                 }
                 System.out.println("Product price changed.");
+                System.out.println();
                 product_found = true;
                 break;
             }
         }
         if (!product_found) {
             System.out.println("No products with such ID found.");
+            System.out.println();
         }
     }
 
@@ -168,20 +174,22 @@ public class Main {
                     FileWriter p_writer = new FileWriter("items.txt");
                     for (Product p2 : products_list) {
                         p_writer.append(p2.getpID()).append("|").append(p2.getpName()).append("|").append(String.valueOf
-                                (p2.getpPrice())).append("|").append(p2.getpCategory()).append("|").append(p.
+                                (p2.getpPrice())).append("|").append(p2.getpCategory()).append("|").append(p2.
                                 getpDescriptions()).append("\n");
                     }
                     p_writer.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("Product deleted.");
+                System.out.println("Product removed.");
+                System.out.println();
                 product_found = true;
                 break;
             }
         }
         if (!product_found) {
             System.out.println("No products with such ID found.");
+            System.out.println();
         }
     }
 
@@ -196,12 +204,14 @@ public class Main {
             if (Objects.equals(p.getpID(), detail_pID)) {
 //              Print product's detailed info
                 p.printDetailedInfo();
+                System.out.println();
                 product_found = true;
                 break;
             }
         }
         if (!product_found) {
             System.out.println("No products with such ID found.");
+            System.out.println();
         }
     }
 
@@ -220,9 +230,11 @@ public class Main {
                 category_found = true;
             }
         }
+        System.out.println();
 
         if (!category_found) {
             System.out.println("No such category found.");
+            System.out.println();
         }
     }
 
@@ -233,12 +245,14 @@ public class Main {
         for (Product p : sortedList) {
             p.printBasicInfo();
         }
+        System.out.println();
     }
 
     static void listAllOrders() {
         for (Order o : orders_list) {
             o.adminPrintOrder();
         }
+        System.out.println();
     }
 
     static void createOrder(String cID) {
@@ -298,6 +312,9 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println("Order placed!");
+        System.out.println();
     }
 
     static void changeOrderStatus() {
@@ -342,16 +359,20 @@ public class Main {
                                 throw new RuntimeException(e);
                             }
                             System.out.println("Order status changed to 'PAID'");
+                            System.out.println();
                             break;
                         } else if (Objects.equals(confirmation, "N") || Objects.equals(confirmation, "n")) {
 //                          Cancel the action if the admin wants to
                             System.out.println("Action cancelled.");
+                            System.out.println();
                             break;
                         }
                         System.out.println("Invalid input.");
+                        System.out.println();
                     }
                 } else {
                     System.out.println("This order has already been paid.");
+                    System.out.println();
                 }
                 order_found = true;
                 break;
@@ -359,6 +380,7 @@ public class Main {
         }
         if (!order_found) {
             System.out.println("No orders with such ID found.");
+            System.out.println();
         }
     }
 
@@ -371,6 +393,7 @@ public class Main {
             }
         }
         System.out.println("Total revenue: " + revenue + " VNĐ");
+        System.out.println();
     }
 
     static void listExecOrders() {
@@ -378,6 +401,7 @@ public class Main {
         for (Order o : orders_exec_list) {
             o.adminPrintOrder();
         }
+        System.out.println();
     }
 
     static void viewMyOrder(String cID) {
@@ -400,12 +424,14 @@ public class Main {
             if (Objects.equals(o.getoID(), view_oID)) {
 //              Print the order's info
                 o.customerPrintOrder();
+                System.out.println();
                 order_found = true;
                 break;
             }
         }
         if (!order_found) {
             System.out.println("No orders with such ID found.");
+            System.out.println();
         }
     }
 
@@ -423,8 +449,141 @@ public class Main {
                 order_found = true;
             }
         }
+        System.out.println();
         if (!order_found) {
             System.out.println("No orders with such Customer ID found.");
+            System.out.println();
+        }
+    }
+
+    //  Tuan's part
+    static void menuGuestUser() {
+        Scanner select = new Scanner(System.in);
+        while (true) {
+            System.out.println("1. List all items");
+            System.out.println("2. View an item's details");
+            System.out.println("3. Search by category");
+            System.out.println("4. Sort by price");
+            System.out.println("0. Exit");
+            int option = select.nextInt();
+
+            if (option == 1) {
+                listAllProducts();
+            } else if (option == 2) {
+                viewDetailedProduct();
+            } else if (option == 3) {
+                searchByCategory();
+            } else if (option == 4) {
+                sortByPrice();
+            } else if (option == 0) {
+                break;
+            } else {
+                System.out.println("Invalid input");
+            }
+        }
+    }
+
+    static void menuMember() {
+        Scanner select = new Scanner(System.in);
+        while (true) {
+            System.out.println("1. My information");
+            System.out.println("2. List all items");
+            System.out.println("3. View an item's details");
+            System.out.println("4. Search by category");
+            System.out.println("5. Sort by price");
+            System.out.println("6. Create order");
+            System.out.println("7. View my orders' information");
+            System.out.println("8. Logout");
+            System.out.println("0. Exit");
+            int option = select.nextInt();
+
+            if (option == 1) {
+                System.out.println("Feature not available");
+            } else if (option == 2) {
+                listAllProducts();
+            } else if (option == 3) {
+                viewDetailedProduct();
+            } else if (option == 4) {
+                searchByCategory();
+            } else if (option == 5) {
+                sortByPrice();
+            } else if (option == 6) {
+                createOrder("C-920");
+            } else if (option == 7) {
+                viewMyOrder("C-920");
+            } else if (option == 8) {
+                System.out.println("Feature not available");
+            } else if (option == 0) {
+                break;
+            } else {
+                System.out.println("Invalid input");
+            }
+        }
+    }
+
+    static void menuAdmin() {
+        Scanner select = new Scanner(System.in);
+        while (true) {
+            System.out.println("1. List all items");
+            System.out.println("2. List all members");
+            System.out.println("3. List all orders");
+            System.out.println("4. Add new product");
+            System.out.println("5. Remove product");
+            System.out.println("6. Update product price");
+            System.out.println("7. Get info on all orders");
+            System.out.println("8. Change order status");
+            System.out.println("9. Calculate total revenue");
+            System.out.println("10. View orders executed today");
+            System.out.println("11. Logout");
+            System.out.println("0. Exit");
+            int option = select.nextInt();
+
+            if (option == 1) {
+                listAllProducts();
+            } else if (option == 2) {
+                System.out.println("Feature not available");
+            } else if (option == 3) {
+                listAllOrders();
+            } else if (option == 4) {
+                addProduct();
+            } else if (option == 5) {
+                rmvProduct();
+            } else if (option == 6) {
+                changePrice();
+            } else if (option == 7) {
+                listAllOrdersByCID();
+            } else if (option == 8) {
+                changeOrderStatus();
+            } else if (option == 9) {
+                calcRevenue();
+            } else if (option == 10) {
+                listExecOrders();
+            } else if (option == 11) {
+                System.out.println("Feature not available");
+            } else if (option == 0) {
+                break;
+            } else {
+                System.out.println("Invalid input");
+            }
+        }
+    }
+
+    static void menuStarting() {
+        Scanner select = new Scanner(System.in);
+        while (true) {
+            System.out.println("1. Login");
+            System.out.println("2. Browse items without logging in");
+            System.out.println("0. Exit");
+            int option = select.nextInt();
+            if (option == 1) {
+                System.out.println("Feature not available");
+            } else if (option == 2) {
+                menuGuestUser();
+            } else if (option == 0) {
+                break;
+            } else {
+                System.out.println("Invalid input");
+            }
         }
     }
 
@@ -510,5 +669,8 @@ public class Main {
 
 //        createOrder("C-920");
 //        viewMyOrder("C-920");
+        menuStarting();
+//        menuMember();
+//        menuAdmin();
     }
 }
