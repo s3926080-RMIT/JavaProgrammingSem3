@@ -8,7 +8,7 @@ public class User {
     private String cUsername;
     private String cPassword;
 
-    private String cType;
+    private String cType = "Customer";
 
     private String cMembership = "Bronze";
 
@@ -52,14 +52,13 @@ public class User {
         return cTotalSpendings;
     }
 
-    public User(String cID, String cName, String cAddress, String cPhonenumber, String cUsername, String cPassword, String cType) {
+    public User(String cID, String cName, String cAddress, String cPhonenumber, String cUsername, String cPassword) {
         this.cID = cID;
         this.cName = cName;
         this.cAddress = cAddress;
         this.cPhonenumber = cPhonenumber;
         this.cUsername = cUsername;
         this.cPassword = cPassword;
-        this.cType = cType;
     }
 
     public User(String cID, String cName, String cAddress, String cPhonenumber, String cUsername, String cPassword, String cType, String cMembership, int cTotalSpendings) {
