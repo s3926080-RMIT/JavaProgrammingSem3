@@ -134,7 +134,7 @@ public class Main {
                     FileWriter p_writer = new FileWriter("items.txt");
                     for (Product p2 : products_list) {
                         p_writer.append(p2.getpID()).append("|").append(p2.getpName()).append("|").append(String.valueOf
-                                (p2.getpPrice())).append("|").append(p2.getpCategory()).append("|").append(p.
+                                (p2.getpPrice())).append("|").append(p2.getpCategory()).append("|").append(p2.
                                 getpDescriptions()).append("\n");
                     }
                     p_writer.close();
