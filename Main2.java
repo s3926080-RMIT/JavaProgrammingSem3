@@ -72,15 +72,7 @@ public class Main2 {
             System.out.print("That is not a valid password. Please try again: ");
         }
 
-        System.out.print("Enter Type: ");
-        String cType;
-        while (true) {
-            cType = scanner.nextLine();
-            if (cType.indexOf('|') == -1) {
-                break;
-            }
-            System.out.print("That is not a valid password. Please try again: ");
-        }
+      
 
         int number = users_list.size() + 1;
         String number_string;
@@ -92,7 +84,7 @@ public class Main2 {
             number_string = "U-" + number;
         }
 
-        User c = new User(number_string, cName, cAddress, cPhonenumber, cUsername, cPassword, cType);
+        User c = new User(number_string, cName, cAddress, cPhonenumber, cUsername, cPassword);
         users_list.add(c);
 
         try {
