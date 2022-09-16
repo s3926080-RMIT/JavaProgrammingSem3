@@ -470,8 +470,10 @@ public class Main {
             if (option == 1) {
                 listAllProducts();
             } else if (option == 2) {
+                listAllProducts();
                 viewDetailedProduct();
             } else if (option == 3) {
+                listAllProducts();
                 searchByCategory();
             } else if (option == 4) {
                 sortByPrice();
@@ -502,8 +504,10 @@ public class Main {
             } else if (option == 2) {
                 listAllProducts();
             } else if (option == 3) {
+                listAllProducts();
                 viewDetailedProduct();
             } else if (option == 4) {
+                listAllProducts();
                 searchByCategory();
             } else if (option == 5) {
                 sortByPrice();
