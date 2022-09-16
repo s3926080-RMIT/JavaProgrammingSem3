@@ -42,7 +42,7 @@ public class Product {
         System.out.printf("%-10s %-25s %-20s %-15s %-35s\n", pID, pName, pPrice + " VNĐ", pCategory, pDescriptions);
     }
 
-    void printBasicInfo(){
+    void printBasicInfo() {
         System.out.printf("%-10s %-25s %-20s\n", pID, pName, pPrice + " VNĐ");
     }
 }

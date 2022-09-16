@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Order {
     private final String oID;
@@ -61,6 +62,16 @@ public class Order {
         oPrice = oPrice + p.getpPrice();
     }
 
+    void applyDiscount(String cMembership) {
+        if (Objects.equals(cMembership, "Silver")) {
+            oPrice = (int) Math.round(oPrice * 0.95 / 1000) * 1000;
+        } else if (Objects.equals(cMembership, "Gold")) {
+            oPrice = (int) Math.round(oPrice * 0.9 / 1000) * 1000;
+        } else if (Objects.equals(cMembership, "Platinum")) {
+            oPrice = (int) Math.round(oPrice * 0.85 / 1000) * 1000;
+        }
+    }
+
     void customerPrintOrder() {
         System.out.println("Order ID: " + oID + "; Customer ID: " + cID);
         System.out.println("Product(s) ordered:");
@@ -76,7 +87,7 @@ public class Order {
         System.out.println("---------------------------------------------------------------------------");
     }
 
-    void printBasicInfoOrder(){
+    void printBasicInfoOrder() {
         System.out.printf("%-10s %-25s\n", oID, oPrice + " VNĐ");
     }
 }
