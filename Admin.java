@@ -362,7 +362,7 @@ public class Admin extends User {
         System.out.println("4. Add new product");
         System.out.println("5. Remove product");
         System.out.println("6. Update product price");
-        System.out.println("7. Get info on all orders");
+        System.out.println("7. Get info on all orders by customer ID");
         System.out.println("8. Change order status");
         System.out.println("9. Calculate total revenue");
         System.out.println("10. View orders executed today");
@@ -379,12 +379,15 @@ public class Admin extends User {
         } else if (Objects.equals(option, "4")) {
             addProduct();
         } else if (Objects.equals(option, "5")) {
+            listAllProducts();
             rmvProduct();
         } else if (Objects.equals(option, "6")) {
+            listAllProducts();
             changePrice();
         } else if (Objects.equals(option, "7")) {
             listAllOrdersByCID();
         } else if (Objects.equals(option, "8")) {
+            listAllOrders();
             changeOrderStatus();
         } else if (Objects.equals(option, "9")) {
             calcRevenue();

@@ -26,6 +26,7 @@ public class User {
                 String login_password = scanner.nextLine();
                 if (Objects.equals(u.getPassword(), login_password)) {
                     System.out.println("Login successful!");
+                    System.out.println();
                     Main.logged_in_as = login_username;
                 } else {
                     System.out.println("Incorrect password.");
@@ -112,7 +113,7 @@ public class User {
         }
 
 //      Generate unique customer ID
-        int temp_cID = Main.users_list.size() + 2;
+        int temp_cID = Main.users_list.size();
         String temp_cID_string;
         if (temp_cID < 10) {
             temp_cID_string = "C-00" + temp_cID;
@@ -128,7 +129,7 @@ public class User {
 
 //      Append new customer info to file
         try {
-            FileWriter c_writer = new FileWriter("users.txt");
+            FileWriter c_writer = new FileWriter("users.txt", true);
             String newCustomer = c.getcID() + "|" + c.getcName() + "|" + c.getcAddress() + "|" + c.getcPhone() + "|" + c
                     .getcMembership() + "|" + c.getUsername() + "|" + c.getPassword() + "|" + c.getcTotalSpending() + "\n";
             c_writer.append(newCustomer);

@@ -86,7 +86,7 @@ public class Customer extends User {
         System.out.println("Name: " + cName);
         System.out.println("Address: " + cAddress);
         System.out.println("Phone: " + cPhone);
-        System.out.println("Total spending: " + cTotalSpending);
+        System.out.println("Total spending: " + cTotalSpending + " VNĐ");
         System.out.println("Membership: " + cMembership);
         System.out.println();
     }

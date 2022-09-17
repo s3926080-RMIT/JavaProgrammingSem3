@@ -103,6 +103,14 @@ public class Main {
         }
         User guest_user = new User();
         logged_in_as = "user";
+        System.out.println("COSC2081 GROUP ASSIGNMENT \n" +
+                "STORE ORDER MANAGEMENT SYSTEM\n" +
+                "Instructor: Mr. Minh Vu\n" +
+                "Group: Group 3\n" +
+                "s3927195, Nguyen The Anh\n" +
+                "s3926080, Nguyen Bao Minh\n" +
+                "s3928141, Tran Viet Hoang\n" +
+                "s3926243, Nguyen Hoang Khanh Duc\n");
         while (true) {
             if (Objects.equals(logged_in_as, "user")) {
                 guest_user.menu();

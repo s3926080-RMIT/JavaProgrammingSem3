@@ -13,3 +13,4 @@ P-012|Macbook Pro 13|30000000|Laptop|Good laptop for office work
 P-013|iPhone 13|20000000|Phone|Good phone but very high price
 P-014|HyperX QuadCast|2900000|Microphone|Good microphone but high price
 P-015|HyperX SoloCast|1500000|Microphone|Good microphone for the price
+P-016|JBL Pulse 5|5500000|Speaker|Quality speaker with beautiful lights

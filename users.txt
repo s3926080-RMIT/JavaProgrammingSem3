@@ -1,6 +1,5 @@
 NULL|NULL|NULL|NULL|NULL|admin|920|NULL
-C-001|Tran Viet Hoang|Vietnam|013131312|Bronze|HoangTrann|1234|0
-C-002|Hoang Tran Viet|Vietnam|092312931|Bronze|HoangTran|1234|0
-C-003|Tuan Nguyen|Azerbaijan|01239812931|Platinum|Tuan123|1234|31000000
-C-004|Khanh Duc|Hanoi, Vietnam|0921313|Bronze|KDUC|1234|0
-C-007|The Van Anh|Sai Gon|113|Gold|thevananh|1234|17000000
+C-001|Nguyen The Anh|Saigon|0987654321|Platinum|TheAnh28|1234|27000000
+C-002|Nguyen Bao Minh|Azerbaijan|0123456789|Gold|MinhNguyen|1234|10400000
+C-003|Tran Viet Hoang|Vietnam|0999888777|Bronze|HoangTran|1234|0
+C-004|Nguyen Hoang Khanh Duc|Hanoi|0111222333|Silver|KhanhDuc|1234|5500000
