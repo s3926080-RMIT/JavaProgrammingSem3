@@ -23,7 +23,7 @@ public class Admin extends User {
         this.aPassword = aPassword;
     }
 
-    void listALlCustomers() {
+    void listAllCustomers() {
         System.out.printf("%-10s %-20s %-25s %-30s %-15s %-25s %-10s\n", "ID", "Username", "Name", "Address", "Phone",
                 "Total spending", "Membership");
         for (User u : Main.users_list) {
@@ -373,7 +373,7 @@ public class Admin extends User {
         if (Objects.equals(option, "1")) {
             listAllProducts();
         } else if (Objects.equals(option, "2")) {
-            listALlCustomers();
+            listAllCustomers();
         } else if (Objects.equals(option, "3")) {
             listAllOrders();
         } else if (Objects.equals(option, "4")) {
